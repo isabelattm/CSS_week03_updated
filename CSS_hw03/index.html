@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html lang="eng">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Week 3 | Typography</title>
+        <!--  Add our CSS file  -->
+        <link rel="stylesheet" href="css/style.css">
+        <!-- Add our Google fonts -->
+        <link rel="icon" type="image/x-icon" href="images/bitd.jpg">
+        <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+    </head>
+
+<body>
+    <header>
+        <br>
+        <a href="https://open.spotify.com/track/3MUkijIqsNm4XIq3EerPpt?si=68fa17ffa35d439f" target="_blank"><h1><mark>Better in the Dark</mark></h1></a>
+        <br>
+        <h2><mark>Jordana, TV Girl</mark></h2>
+        <br>
+    </header>
+
+    <br>
+
+        <audio src="Jordana & TV Girl - Better in the Dark.mp3" controls></audio>
+
+    <p><span id="line1">When I saw you standing there</span></p>
+    <p><span id="line2">With the dyed-up blonded hair</span></p>
+    <p><span id="line3">They said that you had clout</span></p>
+    <p><span id="line4">I said I didn't care</span></p>
+    <br>
+    <p><span id="line5">When the liquor was all clear</span></p>
+    <p><span id="line6">I could see you through the glass</span></p>
+    <p><span id="line7">There's something I could tell you</span></p>
+    <p><span id="line8">But I forgot to ask</span></p>
+    <br>
+    <p><span id="line9">In the shadow of the stars</span></p>
+    <p><span id="line10">The lighter makes a spark</span></p>
+    <p><span id="line11">But I look better in the dark</span></p>
+    <p><span id="line12">I look better in the dark</span></p>
+    <br>
+    <p><span id="line13">Do you think it would be weird</span></p>
+    <p><span id="line14">If I dropped into a dream?</span></p>
+    <p><span id="line15">Always the first to know</span></p>
+    <p><span id="line16">Always the last to leave</span></p>
+    <br>
+    <p><span id="line17">If you're sober in the morning</span></p>
+    <p><span id="line18">We can always just pretend</span></p>
+    <p><span id="line19">That you drank on your way home</span></p>
+    <p><span id="line20">And the party didn't end</span></p>
+    <br>
+    <p><span id="line21">When the sunlight meets the dark</span></p>
+    <p><span id="line22">You'll see I'm not the one you want</span></p>
+    <p><span id="line23">'Cause I look better in the dark</span></p>
+    <br>
+
+    <script>
+    var lyricTimings = [
+    22.0,  //When I saw you standing there
+    25.0,  //With the dyed-up blonded hair
+    28.0,  //They said that you had clout
+    31.0,  //I said I didn't care
+
+    33.0, //When the liquor was all clear
+    36.0, //I could see you through the glass
+    39.0, //There's something I could tell you
+    41.5, //But I forgot to ask
+    
+    44.0, //In the shadow of the stars
+    49.0, //The lighter makes a spark
+    51.0, //But I look better in the dark
+    61.0, //I look better in the dark
+
+    76.0, //Do you think it would be weird
+    78.8, //If I dropped into a dream?
+    81.0, //Always the first to know
+    84.0, //Always the last to leave
+
+    86.0, //If you're sober in the morning
+    89.0, //We can always just pretend
+    92.0, //That you drank on your way home
+    94.0, //And the party didn't end
+
+    97.0, //When the sunlight meets the dark
+    102.0, //You'll see I'm not the one you want
+    105.0 //'Cause I look better in the dark
+];
+
+    var audio = document.querySelector('audio');
+    var lines = document.querySelectorAll('span[id^="line"]');
+    var currentLineIndex = 0;
+
+    audio.addEventListener('timeupdate', function() {
+    var currentTime = audio.currentTime;
+    var currentLineTime = lyricTimings[currentLineIndex];
+
+    if (currentTime >= currentLineTime) {
+        highlightLine(lines[currentLineIndex]);
+        currentLineIndex++;
+
+    }
+
+    if (currentLineIndex >= lines.length) {
+        // All lyrics have been highlighted
+        audio.removeEventListener('timeupdate', this);
+    }
+});
+
+    audio.addEventListener('ended', function() {
+        resetLyrics();
+});
+
+    function highlightLine(line) {
+        // Remove highlight from previous line
+        var previousLine = lines[currentLineIndex - 1];
+            if (previousLine) {
+                previousLine.style.backgroundColor = 'transparent';
+                previousLine.style.color = 'white';
+    }
+
+        // Apply highlight to current line
+    line.style.backgroundColor = 'yellow'; // Apply the desired highlight style
+    line.style.color = 'black';
+}
+
+    function resetLyrics() {
+        lines.forEach(function(line) {
+            line.style.backgroundColor = 'transparent'; // Remove the highlight style
+            line.style.color = 'white';
+    });
+
+    currentLineIndex = 0;
+}
+
+    function getLineTime(lineIndex) {
+        var lineTime = parseFloat(lines[lineIndex].id.replace('line', ''));
+        return isNaN(lineTime) ? 0 : lineTime;
+}
+
+</script>
+</body>
+</html>

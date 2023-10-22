@@ -1,0 +1,64 @@
+@font-face {
+    font-family: 'Satisfy', cursive;
+    src: url(https://fonts.google.com/specimen/Satisfy);
+}
+
+@font-face {
+    font-family: 'Abril Fatface', cursive;
+    src: url(https://fonts.google.com/specimen/Abril+Fatface);
+}
+
+@font-face {
+    font-family: 'Dancing Script', cursive;
+    src: url(https://fonts.google.com/specimen/Dancing+Script);
+}
+
+html{
+    background-color: black;
+    scroll-behavior: smooth;
+}
+
+header{
+    background-color: yellow;
+    background-image: url(../images/bitd.jpg);
+    background-size: contain;
+    text-align: center;
+    font-family: 'Abril Fatface';
+}
+
+a:link{
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
+    color: black;
+}
+
+a:active{
+    text-decoration: none;
+    color: black;
+}
+
+h1{
+    color: hotpink;
+}
+
+h2{
+    color: orange;
+}
+
+audio {
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+body{
+    text-align: center;
+}
+
+p{
+    color: white;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5em;
+}
